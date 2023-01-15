@@ -61,7 +61,9 @@
 				<artifactId>antlr4-maven-plugin</artifactId>
 				<version>${antlr.version}</version>
 		        <configuration>
+		        	<!--
 					<outputDirectory>src/main/java</outputDirectory>
+					-->
 					<listener>true</listener>
 					<visitor>true</visitor>
 				</configuration>
@@ -74,6 +76,23 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>build-helper-maven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <phase>generate-sources</phase>
+			            <goals>
+			                <goal>add-source</goal>
+			            </goals>
+			            <configuration>
+			                <sources>
+			                    <source>${project.build.directory}/generated-sources/antlr4</source>
+			                </sources>
+			            </configuration>
+			        </execution>
+			    </executions>
 			</plugin>			
 		</plugins>
 	</build>
